@@ -1,0 +1,46 @@
+stl.insta.aar@gmail.com
+stlaar2014
+
+
+Projet AAR : 
+
+Utilisateur :
+
+	- Username
+	- Password
+	- Nom
+	- Prenom
+	- Age
+	- Date inscription
+
+Compte social (récupéré depuis l'api facebook)
+
+ 	- 0Id
+ 	- username
+ 	- google, facebook, twitter
+ 	- nom compte
+
+Categorie de produits culturels : 
+	
+	- Id Categorie
+	- Albums de musique
+	- Films
+	- Jeux vidéos
+	- Livres
+
+Produit culturels : 
+
+	- Id Produit
+	- Nom
+	- Categorie (FK)
+	- Date parution
+
+Commentaire sur produit : 
+
+	- Id Produit
+	- Id Commentaire
+	- Username
+	- Date Commentaire
+	- Contenu Commentaire
+	- Note (sur 5)
+
