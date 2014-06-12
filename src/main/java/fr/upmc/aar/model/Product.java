@@ -15,63 +15,61 @@ public class Product {
 	
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-	private Key keyProduct;
+	private Key productKey;
 	
 	@Persistent
-	private String nom;
+	private String name;
 	
 	@Persistent
-	private Category categoryProduct;
+	private Category productCategory;
 	
 	@Persistent
 	private List<Comment> comments;
 	
 	@Persistent 
-	private Date dateParution;
+	private Date publishDate;
 
+	public Key getProductKey() {
+		return productKey;
+	}
 
-	public Key getKeyProduct() {
-		return keyProduct;
+	public void setProductKey(Key productKey) {
+		this.productKey = productKey;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Category getProductCategory() {
+		return productCategory;
+	}
+
+	public void setProductCategory(Category productCategory) {
+		this.productCategory = productCategory;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public Date getPublishDate() {
+		return publishDate;
+	}
+
+	public void setPublishDate(Date publishDate) {
+		this.publishDate = publishDate;
 	}
 
 
-	/*
-	 * GET/SET
-	 */
-	
-	public void setKeyProduct(Key keyProduct) {
-		this.keyProduct = keyProduct;
-	}
-
-
-	public String getNom() {
-		return nom;
-	}
-
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-
-	public Category getCategoryProduct() {
-		return categoryProduct;
-	}
-
-
-	public void setCategoryProduct(Category categoryProduct) {
-		this.categoryProduct = categoryProduct;
-	}
-
-
-	public Date getDateParution() {
-		return dateParution;
-	}
-
-
-	public void setDateParution(Date dateParution) {
-		this.dateParution = dateParution;
-	}
 	
 	
 }

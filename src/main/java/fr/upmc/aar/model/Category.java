@@ -12,22 +12,17 @@ public class Category {
 
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-	private Key keyCategory;
+	private Key categoryKey;
 	
 	@Persistent
 	private String name;
 
-
-	/*
-	 * GET/SET
-	 */
-	
-	public Key getKeyCategory() {
-		return keyCategory;
+	public Key getCategoryKey() {
+		return categoryKey;
 	}
 
-	public void setKeyCategory(Key keyCategory) {
-		this.keyCategory = keyCategory;
+	public void setCategoryKey(Key categoryKey) {
+		this.categoryKey = categoryKey;
 	}
 
 	public String getName() {

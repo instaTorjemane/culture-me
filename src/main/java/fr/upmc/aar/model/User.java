@@ -15,7 +15,7 @@ public class User {
 	
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-	private Key keyUser;
+	private Key userKey;
 	
 	@Persistent
 	private String username;
@@ -24,100 +24,79 @@ public class User {
 	private String password;
 	
 	@Persistent
-	private String nom;
+	private String lastName;
 	
 	@Persistent
-	private String prenom;
+	private String firstName;
 	
 	@Persistent
-	private Date naissance;
+	private Date birtDate;
 	
 	@Persistent
-	private Date dateInscription;
+	private Date inscrDate;
 	
 	
-	/*
-	 * GET/SET 
-	 */
-	
-
-	public Key getKeyUser() {
-		return keyUser;
+	public Key getUserKey() {
+		return userKey;
 	}
 
-
-	public void setKeyUser(Key keyUser) {
-		this.keyUser = keyUser;
+	public void setUserKey(Key userKey) {
+		this.userKey = userKey;
 	}
-
 
 	public String getUsername() {
 		return username;
 	}
 
-
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
 
 	public String getPassword() {
 		return password;
 	}
 
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-
-	public String getNom() {
-		return nom;
+	public String getLastName() {
+		return lastName;
 	}
 
-
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-
-	public String getPrenom() {
-		return prenom;
+	public String getFirstName() {
+		return firstName;
 	}
 
-
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-
-	public Date getDateNaiss() {
-		return naissance;
+	public Date getBirtDate() {
+		return birtDate;
 	}
 
-
-	public void setDateNaiss(Date naiss) {
-		this.naissance = naiss;
+	public void setBirtDate(Date birtDate) {
+		this.birtDate = birtDate;
 	}
 
-
-	public Date getDateInscription() {
-		return dateInscription;
+	public Date getInscrDate() {
+		return inscrDate;
 	}
 
-
-	public void setDateInscription(Date dateInscription) {
-		this.dateInscription = dateInscription;
+	public void setInscrDate(Date inscrDate) {
+		this.inscrDate = inscrDate;
 	}
-	
-	
-	
-	
+
 	public String html()
 	{
 		return 
-		"<p>name  : " + nom + " " + prenom + "</p><br/>" +
-		"<p>username  : " + username + ", password " + password + "</p></br>"
+		"<p>name  : " + lastName + " " + firstName + "</p>" +
+		"<p>username  : " + username + ", password " + password + "</p><br/>"
 		;
 	}
 
