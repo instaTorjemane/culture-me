@@ -30,7 +30,7 @@ public class User {
 	private String prenom;
 	
 	@Persistent
-	private int age;
+	private Date naissance;
 	
 	@Persistent
 	private Date dateInscription;
@@ -91,13 +91,13 @@ public class User {
 	}
 
 
-	public int getAge() {
-		return age;
+	public Date getDateNaiss() {
+		return naissance;
 	}
 
 
-	public void setAge(int age) {
-		this.age = age;
+	public void setDateNaiss(Date naiss) {
+		this.naissance = naiss;
 	}
 
 
@@ -117,7 +117,7 @@ public class User {
 	{
 		return 
 		"<p>name  : " + nom + " " + prenom + "</p><br/>" +
-		"<p>username  : " + username + ", password " + password + "</p><br>"
+		"<p>username  : " + username + ", password " + password + "</p></br>"
 		;
 	}
 
