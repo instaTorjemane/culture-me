@@ -15,26 +15,26 @@ public class Comment {
 	
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-	private Key keyComment;
+	private Key commentKey;
 	
 	@Persistent
 	private String username;
 	
 	@Persistent
-	private Date dateCommentaire;
+	private Date commentDate;
 	
 	@Persistent
-	private String contenu;
+	private String content;
 	
 	@Persistent
-	private Float note;
+	private Float mark;
 
-	public Key getKeyComment() {
-		return keyComment;
+	public Key getCommentKey() {
+		return commentKey;
 	}
 
-	public void setKeyComment(Key keyComment) {
-		this.keyComment = keyComment;
+	public void setCommentKey(Key commentKey) {
+		this.commentKey = commentKey;
 	}
 
 	public String getUsername() {
@@ -45,29 +45,30 @@ public class Comment {
 		this.username = username;
 	}
 
-	public Date getDateCommentaire() {
-		return dateCommentaire;
+	public Date getCommentDate() {
+		return commentDate;
 	}
 
-	public void setDateCommentaire(Date dateCommentaire) {
-		this.dateCommentaire = dateCommentaire;
+	public void setCommentDate(Date commentDate) {
+		this.commentDate = commentDate;
 	}
 
-	public String getContenu() {
-		return contenu;
+	public String getContent() {
+		return content;
 	}
 
-	public void setContenu(String contenu) {
-		this.contenu = contenu;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
-	public Float getNote() {
-		return note;
+	public Float getMark() {
+		return mark;
 	}
 
-	public void setNote(Float note) {
-		this.note = note;
+	public void setMark(Float mark) {
+		this.mark = mark;
 	}
-	
+
+
 	
 }

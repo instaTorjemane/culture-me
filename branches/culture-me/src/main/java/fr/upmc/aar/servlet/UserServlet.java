@@ -41,10 +41,10 @@ public class UserServlet extends HttpServlet {
 		User user = new User();
 		user.setUsername("chebah");
 		user.setPassword("chebah");
-		user.setNom("BAH");
-		user.setPrenom("SARIFOU");
-		user.setDateInscription(new Date());
-		user.setDateNaiss(new Date(92, 3, 20));
+		user.setLastName("BAH");
+		user.setFirstName("SARIFOU");
+		user.setInscrDate(new Date());
+		user.setBirtDate(new Date(92, 3, 20));
 		UserDAO.addUser(user);
 		response.sendRedirect("index.html");
 	}
