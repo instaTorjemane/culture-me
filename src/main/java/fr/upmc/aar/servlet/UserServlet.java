@@ -44,7 +44,7 @@ public class UserServlet extends HttpServlet {
 		user.setNom("BAH");
 		user.setPrenom("SARIFOU");
 		user.setDateInscription(new Date());
-		user.setAge(20);
+		user.setDateNaiss(new Date(92, 3, 20));
 		UserDAO.addUser(user);
 		response.sendRedirect("index.html");
 	}
