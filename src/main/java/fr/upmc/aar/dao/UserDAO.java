@@ -9,26 +9,30 @@ import fr.upmc.aar.model.User;
 
 public class UserDAO {
 	
-	public static boolean addUser(User user)
+	public static ResultState<User> addUser(User user)
 	{
-		boolean state = false;
+		ResultState<User> result = new ResultState<User>();
+		
 		if(!userExists(user.getUsername())){
 			PersistenceManager pm = PMF.get().getPersistenceManager();
 	        try {
 	            pm.makePersistent(user);
-	            state = true;
+	            result.setState(true);
+	            result.setContent(user);
 	        } 
 	        catch(Exception e){
-	        	state =  false;
+	        	result.setState(false);
+	            result.setContent(user);
 	        }
 	        finally {
 	            pm.close();
 	        }
 		}
 		else{
-			state = false;
+			result.setState(false);
+            result.setContent(user);
 		}
-		return state;
+		return result;
 	}
 	
 	public static List<User> listUser()
@@ -51,6 +55,23 @@ public class UserDAO {
 		exists =  (users!=null && users.size() > 0);
 		
 		return exists;
+	}
+	
+	public static ResultState<User> checkUser(final String username, final String password){
+		ResultState<User> result = new ResultState<>();
+		
+		@SuppressWarnings("unchecked")
+		List<User> users = (List<User>) PMF.get().getPersistenceManager().newQuery(User.class, "(username == '" + username + "')").execute();
+		boolean state =  (users != null && users.size() == 1 && users.get(0) != null && password != null && users.get(0).getPassword().equals(password));
+		
+		result.setState(state);
+		if(result.getState()){
+			result.setContent(users.get(0));
+		}
+		else{
+			result.setContent(null);
+		}
+		return result;
 	}
 
 }
