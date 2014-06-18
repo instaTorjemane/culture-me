@@ -31,21 +31,21 @@ public class Example {
 		movies = jtomato.getBoxOfficeMovies("us", 50);
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		for(Movie m : movies){
-			System.out.println(m.title);
+			System.out.println(m.getTitle());
 			System.out.println();
-			System.out.println(m.synopsis);
+			System.out.println(m.getSynopsis());
 			System.out.println();
 			//System.out.println(gson.toJson(m));
 		}
 		// Searching a movie, page 1
 		//int total = jtomato.searchMovie("spider man", movies, 1);
 		//System.out.println("Found " + total + " results");
-		System.out.println("First result: " + movies.get(0));
+		System.out.println("First result: " + gson.toJson(movies.get(0)));
 		
 		// Obtaining additional info
 		Movie movie = jtomato.getMovieAdditionalInfo(movies.get(0));
 		// Printing the movie genre
-		System.out.println("Movie genre: "+movie.genres.get(0));
+		System.out.println("Movie genre: "+movie.getGenres().get(0));
 
 		// Getting similar movies
 		try{
