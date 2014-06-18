@@ -447,14 +447,14 @@ public class JTomato {
 		Movie movieResult = null;
 		String url = null;
 
-		if (movie.id != null) {
+		if (movie.getId() != null) {
 			// Build URI from movie ID
-			String path = urls.ROTTENTOMATOES_API + urls.MOVIE_INFO + "/" + movie.id + ".json";
+			String path = urls.ROTTENTOMATOES_API + urls.MOVIE_INFO + "/" + movie.getId() + ".json";
 			HashMap<String, String> paramsMap = getParamsMap();
 			url = httpClient.buildUrl(path, paramsMap);
-		} else if (movie.links.self != null) {
+		} else if (movie.getLinks().getSelf() != null) {
 			// Otherwise build URI from movie self-link
-			url = movie.links.self;
+			url = movie.getLinks().getSelf();
 		}
 
 		if (url != null) {
@@ -501,7 +501,7 @@ public class JTomato {
 			limit = 5;
 		}
 		try {
-			String path = urls.MOVIE_INFO + "/" + movie.id + "/similar.json";
+			String path = urls.MOVIE_INFO + "/" + movie.getId() + "/similar.json";
 			movies = getNonPaginatedResults(path, limit, country);
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
@@ -525,7 +525,7 @@ public class JTomato {
 	 */
 	public List<AbridgedCast> getMovieCast(Movie movie) {
 		List<AbridgedCast> result = new ArrayList<AbridgedCast>();
-		String path = urls.ROTTENTOMATOES_API + urls.MOVIE_INFO + "/" + movie.id + "/cast.json";
+		String path = urls.ROTTENTOMATOES_API + urls.MOVIE_INFO + "/" + movie.getId() + "/cast.json";
 		HashMap<String, String> paramsMap = getParamsMap();
 		String uri = httpClient.buildUrl(path, paramsMap);
 		String response = httpClient.get(uri);
@@ -581,7 +581,7 @@ public class JTomato {
 	 */
 	public int getMovieReviews(Movie movie, List<Review> result, ReviewType reviewType, int page, String country) {
 		int total = 0;
-		String path = urls.ROTTENTOMATOES_API + urls.MOVIE_INFO + "/" + movie.id + "/reviews.json";
+		String path = urls.ROTTENTOMATOES_API + urls.MOVIE_INFO + "/" + movie.getId() + "/reviews.json";
 		HashMap<String, String> paramsMap = getParamsMap();
 		paramsMap.put("page", String.valueOf(page));
 		paramsMap.put("review_type", reviewType.toString());
