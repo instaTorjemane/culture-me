@@ -1,40 +1,50 @@
 package fr.upmc.aar.dao;
 
-import java.util.List;
-
 import javax.jdo.PersistenceManager;
-import javax.jdo.Query;
 
 import fr.upmc.aar.model.Movie;
 
 public class MovieDAO {
-	
+
 	/*
-	 * Add Product
+	 * Add Movie
 	 */
-	
-	
-	
-	
+
+	public static void addMovie(Movie movie)
+	{
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+
+		try {
+			pm.makePersistent(movie);
+		} 
+		catch(Exception e){
+		}
+		finally {
+			pm.close();
+		}
+
+	}
+
+
 	/*
 	 * Add comment to product
 	 */
-	
+
 	/*
 	 * get product
 	 */
-	
-	
+
+
 	/*get product comments
 	 * 
 	 */
-	
-	
-	
+
+
+
 	/*
 	 * List of products
 	 */
-	
+
 	/*
 	 * Check if product exists
 	 */
