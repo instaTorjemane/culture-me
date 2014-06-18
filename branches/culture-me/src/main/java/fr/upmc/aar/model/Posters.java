@@ -1,27 +1,78 @@
 package fr.upmc.aar.model;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+import com.google.appengine.api.datastore.Key;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * GSON class representing the movie poster links
+ * Class representing the movie poster links
  * 
- * @author <a href="mailto:tambug@gmail.com">Giordano Tamburrelli</a>
- * 
- * @version 1.0
  **/
+@PersistenceCapable
 public class Posters {
 	
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key postersKey;
+	
+	@Persistent
 	@SerializedName("thumbnail")
-	public String thumbnail;
+	private String thumbnail;
 
+	@Persistent
 	@SerializedName("profile")
-	public String profile;
+	private String profile;
 
+	@Persistent
 	@SerializedName("detailed")
-	public String detailed;
+	private String detailed;
 
+	@Persistent
 	@SerializedName("original")
-	public String original;
+	private String original;
+	
+	public Key getPostersKey() {
+		return postersKey;
+	}
 
+	public void setPostersKey(Key postersKey) {
+		this.postersKey = postersKey;
+	}
 
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+
+	public String getDetailed() {
+		return detailed;
+	}
+
+	public void setDetailed(String detailed) {
+		this.detailed = detailed;
+	}
+
+	public String getOriginal() {
+		return original;
+	}
+
+	public void setOriginal(String original) {
+		this.original = original;
+	}
+	
 }
