@@ -20,4 +20,15 @@
     <servlet-name>UserListServlet</servlet-name>
     <url-pattern>/UserListServlet</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>PopulateServlet</display-name>
+    <servlet-name>PopulateServlet</servlet-name>
+    <servlet-class>fr.upmc.aar.servlet.PopulateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PopulateServlet</servlet-name>
+    <url-pattern>/PopulateServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
