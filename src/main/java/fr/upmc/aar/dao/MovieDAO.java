@@ -5,9 +5,9 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-import fr.upmc.aar.model.Product;
+import fr.upmc.aar.model.Movie;
 
-public class ProductDAO {
+public class MovieDAO {
 	
 	/*
 	 * Add Product
