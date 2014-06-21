@@ -46,14 +46,14 @@ public class UserDAO {
 	}
 	
 	
-	public static User getUser(String username, String mail){
+	public static User getUser(String username, String password){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		User u = new User();
 		Query q = pm.newQuery(User.class);
 		q.setFilter("username = userNameParameter && mail == mailParameter");
-		q.declareParameters("String username, String mailParameter");
+		q.declareParameters("String username, String passwordParameter");
 		try{
-			u = (User) q.execute(username,mail);
+			u = (User) q.execute(username,password);
 		}catch(Exception e){
 			System.out.println("Exception dans getUser()");
 			e.printStackTrace();
