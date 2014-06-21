@@ -46,6 +46,25 @@ public class UserDAO {
 	}
 	
 	
+	public static User getUser(String username, String mail){
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		User u = new User();
+		Query q = pm.newQuery(User.class);
+		q.setFilter("username = userNameParameter && mail == mailParameter");
+		q.declareParameters("String username, String mailParameter");
+		try{
+			u = (User) q.execute(username,mail);
+		}catch(Exception e){
+			System.out.println("Exception dans getUser()");
+			e.printStackTrace();
+		}finally{
+			q.closeAll();
+			pm.close();
+		}
+		return u;
+	}
+	
+	
 	public static boolean userExists(final String username)
 	{
 		boolean exists = false;
