@@ -5,8 +5,8 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
+import org.datanucleus.FetchGroup;
 
-import fr.upmc.aar.model.Comment;
 import fr.upmc.aar.model.Movie;
 
 
@@ -27,6 +27,7 @@ public class MovieDAO {
 	public static void addMovie(Movie movie)
 	{
 		PersistenceManager pm = PMF.get().getPersistenceManager();
+		pm.getFetchPlan().setGroup(FetchGroup.ALL);
 
 		try {
 			pm.makePersistent(movie);
@@ -42,6 +43,7 @@ public class MovieDAO {
 	public static List<Movie> listMovie()
 	{
 		PersistenceManager pm = PMF.get().getPersistenceManager();
+		pm.getFetchPlan().setGroup(FetchGroup.ALL);
 		Query q = pm.newQuery(Movie.class);
 		@SuppressWarnings("unchecked")
 		List<Movie> movies = (List<Movie>) q.execute();

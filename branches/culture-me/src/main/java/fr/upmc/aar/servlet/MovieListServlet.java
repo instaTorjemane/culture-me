@@ -35,7 +35,8 @@ public class MovieListServlet extends HttpServlet {
 		for(Movie movie : movies){
 			response.getWriter().print("<p>titre : " + movie.getTitle() + "</p>" + 
 					"<p>Description : </p><p>" + movie.getSynopsis() +  "</p>" + 
-					"<p>sortie : " + movie.getRuntime() + "</p>" 
+					"<p>sortie : " + movie.getRuntime() + "</p>" +
+					"<p> poster : " + movie.getPosters().getDetailed() + "</p>"
 					);
 		}
 		
