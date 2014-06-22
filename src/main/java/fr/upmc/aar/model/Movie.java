@@ -5,7 +5,6 @@ import java.util.List;
 import com.google.appengine.api.datastore.Key;
 import com.google.gson.annotations.SerializedName;
 
-import javax.jdo.annotations.Embedded;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
@@ -29,7 +28,7 @@ public class Movie {
 	@SerializedName("title")
 	private String title;
 
-	@Persistent
+	@Persistent(defaultFetchGroup = "true")
 	@SerializedName("genres")
 	private List<String> genres;
 
@@ -42,11 +41,11 @@ public class Movie {
 	@SerializedName("mpaa_rating")
 	private String mpaaRating;
 
-	@Persistent
+	@Persistent(defaultFetchGroup = "true")
 	@SerializedName("ratings")
 	private Rating rating;
 
-	@Persistent
+	@Persistent(defaultFetchGroup = "true")
 	@SerializedName("release_dates")
 	private ReleaseDate releaseDate;
 
@@ -63,20 +62,19 @@ public class Movie {
 	@SerializedName("synopsis")
 	private String synopsis;
 
-	@Persistent
-	@Embedded
+	@Persistent(defaultFetchGroup = "true")
 	@SerializedName("posters")
-	public Posters posters;
+	private Posters posters;
 
-	@Persistent
+	@Persistent(defaultFetchGroup = "true")
 	@SerializedName("links")
 	private Links links;
 
-	@Persistent
+	@Persistent(defaultFetchGroup = "true")
 	@SerializedName("abridged_cast")
 	private List<AbridgedCast> abridgedCast;
 	
-	@Persistent
+	@Persistent(defaultFetchGroup = "true")
 	private List<Comment> comments;
 
 	public Key getMovieKey() {
@@ -190,6 +188,14 @@ public class Movie {
 	public void setAbridgedCast(List<AbridgedCast> abridgedCast) {
 		this.abridgedCast = abridgedCast;
 	}
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
 	
 	public List<Comment> getComments() {
 		return comments;

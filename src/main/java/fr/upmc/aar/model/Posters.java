@@ -1,6 +1,5 @@
 package fr.upmc.aar.model;
 
-import javax.jdo.annotations.EmbeddedOnly;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
@@ -14,7 +13,6 @@ import com.google.gson.annotations.SerializedName;
  * 
  **/
 @PersistenceCapable
-@EmbeddedOnly
 public class Posters {
 	
 	@PrimaryKey
@@ -36,6 +34,7 @@ public class Posters {
 	@Persistent
 	@SerializedName("original")
 	private String original;
+	
 	
 	public Key getPostersKey() {
 		return postersKey;
