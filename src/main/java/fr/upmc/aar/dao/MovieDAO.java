@@ -5,12 +5,10 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-import com.google.appengine.api.search.query.ExpressionParser.negation_return;
 
 import fr.upmc.aar.model.Comment;
 import fr.upmc.aar.model.Movie;
-import fr.upmc.aar.model.ReleaseDate;
-import fr.upmc.aar.model.User;
+
 
 public class MovieDAO {
 
@@ -84,8 +82,8 @@ public class MovieDAO {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Movie m = new Movie();
 		Query q = pm.newQuery(Movie.class);
-		q.setFilter("title = titleParameter && realaseDate == relaseDateParameter");
-		q.declareParameters("String titleParameter, year yearParameter");
+		q.setFilter("title = titleParameter && year == yearParameter");
+		q.declareParameters("String titleParameter, String yearParameter");
 		try{
 			 m = (Movie) q.execute(title,year);
 		}catch(Exception e){

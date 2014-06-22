@@ -5,6 +5,7 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
+import fr.upmc.aar.model.Comment;
 import fr.upmc.aar.model.User;
 
 public class UserDAO {
@@ -46,12 +47,13 @@ public class UserDAO {
 	}
 	
 	
+	
 	public static User getUser(String username, String password){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		User u = new User();
 		Query q = pm.newQuery(User.class);
 		q.setFilter("username = userNameParameter && mail == mailParameter");
-		q.declareParameters("String username, String passwordParameter");
+		q.declareParameters("String userNameParameter, String passwordParameter");
 		try{
 			u = (User) q.execute(username,password);
 		}catch(Exception e){
