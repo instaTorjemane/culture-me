@@ -5,16 +5,6 @@
 	version="2.5">
 	<servlet>
 		<description></description>
-		<display-name>LoginServlet</display-name>
-		<servlet-name>LoginServlet</servlet-name>
-		<servlet-class>fr.upmc.aar.servlet.LoginServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Login</servlet-name>
-		<url-pattern>/Login</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<description></description>
 		<display-name>UserServlet</display-name>
 		<servlet-name>UserServlet</servlet-name>
 		<servlet-class>fr.upmc.aar.servlet.UserServlet</servlet-class>
@@ -53,6 +43,18 @@
 		<servlet-name>MovieListServlet</servlet-name>
 		<url-pattern>/MovieListServlet</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<description></description>
+		<display-name>LoginServlet</display-name>
+		<servlet-name>LoginServlet</servlet-name>
+		<servlet-class>fr.upmc.aar.servlet.LoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoginServlet</servlet-name>
+		<url-pattern>/Login</url-pattern>
+	</servlet-mapping>
+	
 	<servlet>
 		<description></description>
 		<display-name>RegisterUserServlet</display-name>
@@ -63,6 +65,7 @@
 		<servlet-name>RegisterUserServlet</servlet-name>
 		<url-pattern>/RegisterUserServlet</url-pattern>
 	</servlet-mapping>
+	
 	<servlet>
 		<description></description>
 		<display-name>SendPasswordServlet</display-name>
