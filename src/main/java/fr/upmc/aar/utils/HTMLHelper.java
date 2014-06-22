@@ -1,5 +1,9 @@
 package fr.upmc.aar.utils;
 
+import javax.servlet.http.HttpSession;
+
+import fr.upmc.aar.model.User;
+
 public class HTMLHelper {
 		
 	public static String createArticle(String link, String anchorClass, String imageSrc, String title, String description){
@@ -16,6 +20,10 @@ public class HTMLHelper {
 		
 		return article.toString();
 	}
-		
+	
+	public static User getConnectedUser(HttpSession session)
+	{
+		return (User) session.getAttribute("user");	
+	}		
 
 }

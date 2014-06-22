@@ -1,48 +1,166 @@
  
-/* Normal styles for the modal */
-#modal {
-	background:#fff;
-	left:50%;
-	margin:-250px 0 0 -40%;
-	position:absolute;
-	top:-50%;
-	width:80%;
-	border-radius:5px;
-	box-shadow:0 3px 7px rgba(0,0,0,.25);
-	-moz-box-shadow:0 3px 7px rgba(0,0,0,.25);
-	-webkit-box-shadow:0 3px 7px rgba(0,0,0,.25);
-	box-sizing:border-box;
-	-moz-box-sizing:border-box;
-	-webkit-box-sizing:border-box;
+/* /* Normal styles for the modal */
+/* #modal { */
+/* 	background:#fff; */
+/* 	left:50%; */
+/* 	margin:-250px 0 0 -40%; */
+/* 	position:absolute; */
+/* 	top:-50%; */
+/* 	width:80%; */
+/* 	border-radius:5px; */
+/* 	box-shadow:0 3px 7px rgba(0,0,0,.25); */
+/* 	-moz-box-shadow:0 3px 7px rgba(0,0,0,.25); */
+/* 	-webkit-box-shadow:0 3px 7px rgba(0,0,0,.25); */
+/* 	box-sizing:border-box; */
+/* 	-moz-box-sizing:border-box; */
+/* 	-webkit-box-sizing:border-box; */
+/* } */
+/* 	/* Make the modal appear when targeted */ */
+/* 	#modal:target { */
+/* 		top:50%; */
+/* 		transition: all 0.4s ease-in-out; */
+/* 		-moz-transition: all 0.4s ease-in-out; */
+/* 		-webkit-transition: all 0.4s ease-in-out; */
+/* 	} */
+/* #modal header,#modal footer { */
+/* 	background:#f7f7f7; */
+/* 	border-bottom: 1px solid #e7e7e7; */
+/* 	border-radius: 5px 5px 0 0; */
+/* 	-moz-border-radius: 5px 5px 0 0; */
+/* 	-webkit-border-radius: 5px 5px 0 0; */
+/* } */
+/* 	#modal footer { */
+/* 		border:none; */
+/* 		border-top: 1px solid #e7e7e7; */
+/* 		border-radius: 0 0 5px 5px; */
+/* 		-moz-border-radius: 0 0 5px 5px; */
+/* 		-webkit-border-radius: 0 0 5px 5px; */
+/* 	} */
+/* #modal section,#modal header, #modal footer { */
+/* 	padding:15px; */
+/* 	z-index:200; */
+/* } */
+/* #modal h2 { */
+/* 	margin:0; */
+/* } */
+/* #modal .btn { */
+/* 	float:right; */
+/* } */
+
+.modalDialog {
+	position: fixed;
+	font-family: Arial, Helvetica, sans-serif;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.8);
+	z-index: 99999;
+	opacity:0;
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	pointer-events: none;
 }
-	/* Make the modal appear when targeted */
-	#modal:target {
-		top:50%;
-		transition: all 0.4s ease-in-out;
-		-moz-transition: all 0.4s ease-in-out;
-		-webkit-transition: all 0.4s ease-in-out;
-	}
-#modal header,#modal footer {
-	background:#f7f7f7;
-	border-bottom: 1px solid #e7e7e7;
-	border-radius: 5px 5px 0 0;
-	-moz-border-radius: 5px 5px 0 0;
-	-webkit-border-radius: 5px 5px 0 0;
+
+
+Creating a modal window with HTML5 & CSS3
+By Keenan Payne | CSS, HTML, Web Design | Oct 2, 2012
+
+Modal boxes are a frequently utilized tool in the web developer’s arsenal. Used for, amongst many things, login/register forms; advertisements; or just notifications to the user.
+
+However despite the fact that modal windows frequently contain mission critical information, they are routinely created with JavaScript, which does not sit well with the best-practices of progressive enhancement or graceful degration.
+
+This doesn’t need to be a problem, because HTML5 & CSS3 allow us to create modal windows with ease.
+
+ 
+Demo
+
+What we are going to do is use CSS3’s transition, opacity, pointer-event, and background gradient properties to create a very beautiful and functional modal box.
+
+You can view a demo here.
+
+ 
+The HTML
+
+The first step to creating our modal box is this short but sweet markup: 
+
+<a href="#openModal">Open Modal</a>
+
+<div id="openModal" class="modalDialog">
+	
+</div>
+
+As you can see, we just have a simple link that says “Open Modal” and links to our openModal div that is placed right below it. We are doing all of our styling here with classes, so we use the ID just as a hook for opening our modal box, and we will style everything using the modalDialog class. 
+
+Next, we add a div tag that will hold all of our content in the modal box. Inside of this div we are going to have a link to close the box which we will style with our CSS. We will then put a simple heading with a few paragraphs of text beneath it. Your HTML markup should now look like this:
+
+<a href="#openModal">Open Modal</a>
+
+<div id="openModal" class="modalDialog">
+	<div>
+		<a href="#close" title="Close" class="close">X</a>
+		<h2>Modal Box</h2>
+		<p>This is a sample modal box that can be created using the powers of CSS3.</p>
+		<p>You could do a lot of things here like have a pop-up ad that shows when your website loads, or create a login/register form for users.</p>
+	</div>
+</div>
+
+ 
+Starting styling
+
+Right now we just have a link with a div showing beneath it. We will begin styling our box and making it actually functional. Let’s first create our modalDialog classes and start moving forward. 
+
+.modalDialog {
+	position: fixed;
+	font-family: Arial, Helvetica, sans-serif;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.8);
+	z-index: 99999;
+	opacity:0;
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	pointer-events: none;
 }
-	#modal footer {
-		border:none;
-		border-top: 1px solid #e7e7e7;
-		border-radius: 0 0 5px 5px;
-		-moz-border-radius: 0 0 5px 5px;
-		-webkit-border-radius: 0 0 5px 5px;
-	}
-#modal section,#modal header, #modal footer {
-	padding:15px;
-	z-index:200;
+
+.modalDialog:target {
+	opacity:1;
+	pointer-events: auto;
 }
-#modal h2 {
-	margin:0;
+
+.modalDialog > div {
+	width: 400px;
+	position: relative;
+	margin: 10% auto;
+	padding: 5px 20px 13px 20px;
+	border-radius: 10px;
+	background: #fff;
+	background: -moz-linear-gradient(#fff, #999);
+	background: -webkit-linear-gradient(#fff, #999);
+	background: -o-linear-gradient(#fff, #999);
 }
-#modal .btn {
-	float:right;
+
+.close {
+	background: #606061;
+	color: #FFFFFF;
+	line-height: 25px;
+	position: absolute;
+	right: -12px;
+	text-align: center;
+	top: -10px;
+	width: 24px;
+	text-decoration: none;
+	font-weight: bold;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
+	-moz-box-shadow: 1px 1px 3px #000;
+	-webkit-box-shadow: 1px 1px 3px #000;
+	box-shadow: 1px 1px 3px #000;
 }
+
+.close:hover { background: #00d9ff; }

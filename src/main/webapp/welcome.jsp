@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<%@page import="fr.upmc.aar.model.User"%>
 <%@page import="fr.upmc.aar.dao.MovieDAO"%>
 <%@page import="fr.upmc.aar.model.Movie"%>
 <%@page import="java.util.List"%>
@@ -53,7 +54,16 @@
 							<li><a href="left-sidebar.html">Left Sidebar</a></li>
 							<li><a href="right-sidebar.html">Right Sidebar</a></li>
 							<li><a href="no-sidebar.html">No Sidebar</a></li>
-							<li><a href="login.jsp">Se connecter</a></li>
+							<% 
+								if (session.getAttribute("user") != null)
+								{
+									User connectedUser = (User) session.getAttribute("user");
+									out.print("<li><a href='logout.jsp'>Se deconnecter (" + connectedUser.getFirstName() + " " + connectedUser.getLastName() + ")</a></li>");
+								}
+								else
+									out.print("<li><a href='login.jsp'>Se connecter</a></li>");
+							%>
+<!-- 							<li><a href="login.jsp">Se connecter</a></li> -->
 						</ul>
 					</nav>					
 
@@ -72,18 +82,16 @@
 			<div class="carousel">
 				<div class="reel">
 					<% 
-						List<Movie> movies = MovieDAO.listMovie();
-					
+						List<Movie> movies = MovieDAO.listMovie();					
 						String image = "";
-						
-						
 							
 						for (int i=0; i<movies.size(); i++)
 						{
-							if (movies.get(i).getPosters() != null)
+							if(movies.get(i).getPosters() != null)
 								image = movies.get(i).getPosters().getOriginal();
 							else
-								image = "";
+								image = "http://www.picturesnew.com/media/images/image.jpg";
+							
 							out.write(HTMLHelper.createArticle("movieDetail.jsp", 
 								"image featured", 
 								image, 
