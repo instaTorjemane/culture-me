@@ -56,7 +56,7 @@ public class MailServlet extends HttpServlet {
 		try {
 		    Message msg = new MimeMessage(session);
 		    msg.setFrom(new InternetAddress("stl.insta.aar@gmail.com", "Webmaster Culture-me"));
-		    msg.addRecipient(Message.RecipientType.TO,new InternetAddress(u.getMail(),"M. "+u.getLastName()));
+		    msg.addRecipient(Message.RecipientType.TO,new InternetAddress("","M. "+u.getLastName()));
 		    msg.setSubject("[Culture-me] Bienvenue "+u.getUsername()+" !");
 		    msg.setText(msgBody);
 		    Transport.send(msg);
