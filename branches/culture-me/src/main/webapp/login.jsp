@@ -32,36 +32,42 @@
 					<div class="column">
 						<div>
 							<label>Prénom</label>
-							<input type="text" />
+							<input type="text" name="firstname"/>
 							<span class="error">Saisie invalide</span>
 						</div>
-						<div>
-							<label>Nom</label>
-							<input type="text" />
-							<span class="error">Saisie invalide</span>
-						</div>
-						<div>
-							<label>Site web</label>
-							<input type="text" value="http://"/>
-							<span class="error">Saisie invalide</span>
-						</div>
-					</div>
-					<div class="column">
 						<div>
 							<label>Nom d'utilisateur</label>
-							<input type="text"/>
+							<input type="text" name="username"/>
 							<span class="error">Saisie invalide</span>
 						</div>
 						<div>
 							<label>Adresse mail</label>
-							<input type="text" />
+							<input type="text" name="email"/>
+							<span class="error">Saisie invalide</span>
+						</div>						
+					</div>
+					<div class="column">
+						<div>
+							<label>Nom</label>
+							<input type="text" name="lastname"/>
 							<span class="error">Saisie invalide</span>
 						</div>
 						<div>
 							<label>Mot de passe</label>
-							<input type="password" />
+							<input type="password" name="password"/>
 							<span class="error">Saisie invalide</span>
 						</div>
+						<div>
+							<label>Date de naissance</label>
+							<input type="text" name="birthdate"/>
+							<span class="error">Saisie invalide</span>
+						</div>
+						
+					</div>
+					<div>
+						<label>Site web</label>
+						<input type="text" name="website" value="http://"/>
+						<span class="error">Saisie invalide</span>
 					</div>
 					<div class="bottom">
 						<input type="submit" value="Enregister" />

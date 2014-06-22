@@ -79,6 +79,11 @@ a.back{
 	width:47%;
 	float:left;
 }
+.form_wrapper .doublecolumn{
+	width:100%;
+	float:left;
+}
+
 form.active{
 	display:block;
 }

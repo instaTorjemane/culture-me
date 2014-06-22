@@ -1,5 +1,6 @@
 package fr.upmc.aar.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -11,8 +12,13 @@ import com.google.appengine.api.datastore.Key;
 
 
 @PersistenceCapable
-public class User {
+public class User implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private Key userKey;
