@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<%@page import="fr.upmc.aar.dao.MovieDAO"%>
+<%@page import="fr.upmc.aar.model.Movie"%>
+<%@page import="java.util.List"%>
 <%@page import="fr.upmc.aar.utils.HTMLHelper"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,19 +13,19 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" rel="stylesheet" type="text/css" />
+		<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" rel="stylesheet" type="text/css" />		
 		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
 		<script src="js/jquery.min.js"></script>
 		<script src="js/jquery.dropotron.min.js"></script>
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-panels.min.js"></script>
 		<script src="js/init.js"></script>
+		
 		<noscript>
 			<link rel="stylesheet" href="css/skel-noscript.css" />
 			<link rel="stylesheet" href="css/style.css" />
 			<link rel="stylesheet" href="css/style-desktop.css" />
-			<link rel="stylesheet" href="css/style-noscript.css" />
-			<link rel="stylesheet" href="css/style-modal.css" />
+			<link rel="stylesheet" href="css/style-noscript.css" />			
 		</noscript>
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
 	</head>
@@ -49,7 +53,7 @@
 							<li><a href="left-sidebar.html">Left Sidebar</a></li>
 							<li><a href="right-sidebar.html">Right Sidebar</a></li>
 							<li><a href="no-sidebar.html">No Sidebar</a></li>
-							<li><a href="#modal">Se connecter</a></li>
+							<li><a href="login.jsp">Se connecter</a></li>
 						</ul>
 					</nav>					
 
@@ -64,30 +68,30 @@
 				</span>
 			</div>
 			
-			<aside id="modal">
-				<header>
-					<h2>Modal Heading</h2>
-				</header>
-				<section>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-				</section>
-				<footer class="cf">
-					<a href="#" class="btn">Close</a>
-				</footer>
-			</aside>
-
 		<!-- Carousel -->
 			<div class="carousel">
 				<div class="reel">
 					<% 
-						for (int i=0; i<10; i++)
+						List<Movie> movies = MovieDAO.listMovie();
+					
+						String image = "";
+						
+						
+							
+						for (int i=0; i<movies.size(); i++)
 						{
-							out.write(HTMLHelper.createArticle("MovieDetail.jsp", 
+							if (movies.get(i).getPosters() != null)
+								image = movies.get(i).getPosters().getOriginal();
+							else
+								image = "";
+							out.write(HTMLHelper.createArticle("movieDetail.jsp", 
 								"image featured", 
-								"images/pic01.jpg", 
-								"Batman",
-								"Exellent film"));
+								image, 
+								movies.get(i).getTitle(),
+								movies.get(i).getSynopsis()));
 						}
+
+						
 					%>
 				</div>
 			</div>

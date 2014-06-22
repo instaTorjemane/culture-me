@@ -53,5 +53,25 @@
 		<servlet-name>MovieListServlet</servlet-name>
 		<url-pattern>/MovieListServlet</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>RegisterUserServlet</display-name>
+		<servlet-name>RegisterUserServlet</servlet-name>
+		<servlet-class>fr.upmc.aar.servlet.RegisterUserServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RegisterUserServlet</servlet-name>
+		<url-pattern>/RegisterUserServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>SendPasswordServlet</display-name>
+		<servlet-name>SendPasswordServlet</servlet-name>
+		<servlet-class>fr.upmc.aar.servlet.SendPasswordServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SendPasswordServlet</servlet-name>
+		<url-pattern>/SendPasswordServlet</url-pattern>
+	</servlet-mapping>
 
 </web-app>

@@ -30,7 +30,10 @@ public class User {
 	private String firstName;
 	
 	@Persistent
-	private Date birtDate;
+	private Date birthDate;
+	
+	@Persistent
+	private String website;
 	
 	@Persistent
 	private Date inscrDate;
@@ -87,12 +90,12 @@ public class User {
 		this.firstName = firstName;
 	}
 
-	public Date getBirtDate() {
-		return birtDate;
+	public Date getBirthDate() {
+		return birthDate;
 	}
 
-	public void setBirtDate(Date birtDate) {
-		this.birtDate = birtDate;
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
 
 	public Date getInscrDate() {
@@ -101,6 +104,15 @@ public class User {
 
 	public void setInscrDate(Date inscrDate) {
 		this.inscrDate = inscrDate;
+	}
+
+	
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
 	}
 
 	public String html()

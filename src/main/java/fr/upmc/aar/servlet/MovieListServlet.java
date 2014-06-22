@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.upmc.aar.dao.MovieDAO;
-import fr.upmc.aar.dao.UserDAO;
 import fr.upmc.aar.model.Movie;
-import fr.upmc.aar.model.User;
 
 /**
  * Servlet implementation class MovieListServlet
