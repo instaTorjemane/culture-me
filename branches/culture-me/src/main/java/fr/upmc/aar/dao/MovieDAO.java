@@ -1,6 +1,11 @@
 package fr.upmc.aar.dao;
 
+import java.sql.Array;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
@@ -54,12 +59,17 @@ public class MovieDAO {
 		Movie m = new Movie();
 		
 		List<Comment> allComments = getMovieComments(title, year);
+		if(allComments == null){
+			allComments = new ArrayList<Comment>();
+		}
+		allComments.add(comment);
 		
 		//Setter le commentaire dans l'objet movie
-		m.setComments(allComments);
+		
 		
 		//Persister
 		try{
+			m.setComments(allComments);
 			pm.makePersistent(m);
 		}catch(Exception e){
 			System.out.println("Exception dans AddComment");	
@@ -73,14 +83,20 @@ public class MovieDAO {
 	/*
 	 * get movie
 	 */
+	@SuppressWarnings("unchecked")
 	public static Movie getMovie(String title, String year){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Movie m = new Movie();
 		Query q = pm.newQuery(Movie.class);
-		q.setFilter("title = titleParameter && year == yearParameter");
+		
+		q.setFilter("title == titleParameter && year == yearParameter");
 		q.declareParameters("String titleParameter, String yearParameter");
+		
 		try{
-			 m = (Movie) q.execute(title,year);
+			 List<Movie> movies = (List<Movie>) q.execute(title,year);
+			 if (movies != null && movies.size()==1){
+				 m = movies.get(0);
+			 }
 		}catch(Exception e){
 			System.out.println("Exception dans getMovie()");
 			e.printStackTrace();
