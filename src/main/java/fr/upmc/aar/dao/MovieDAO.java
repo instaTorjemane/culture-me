@@ -7,6 +7,7 @@ import javax.jdo.Query;
 
 import org.datanucleus.FetchGroup;
 
+import fr.upmc.aar.model.Comment;
 import fr.upmc.aar.model.Movie;
 
 
@@ -15,7 +16,7 @@ public class MovieDAO {
 	/*
 	 * List of movies
 	 */
-	public static List<Movie> listMovies(){
+	public static List<Movie> listMovie(){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Query q = pm.newQuery(Movie.class);
 		@SuppressWarnings("unchecked")
@@ -23,7 +24,10 @@ public class MovieDAO {
 		pm.close();
 		return movies;
 	}
-
+	
+	/*
+	 * Add movie
+	 */
 	public static void addMovie(Movie movie)
 	{
 		PersistenceManager pm = PMF.get().getPersistenceManager();
@@ -38,17 +42,6 @@ public class MovieDAO {
 			pm.close();
 		}
 
-	}
-	
-	public static List<Movie> listMovie()
-	{
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-		pm.getFetchPlan().setGroup(FetchGroup.ALL);
-		Query q = pm.newQuery(Movie.class);
-		@SuppressWarnings("unchecked")
-		List<Movie> movies = (List<Movie>) q.execute();
-		pm.close();
-		return movies;
 	}
 
 
@@ -100,7 +93,7 @@ public class MovieDAO {
 	}
 
 
-	/*get movies comments ==> A FAIRE DANS CommentsDAO 
+	/*get movies comments
 	 */
 	public static List<Comment> getMovieComments(String title, String year){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
