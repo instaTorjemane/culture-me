@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.appengine.api.datastore.Key;
 import com.google.gson.annotations.SerializedName;
 
+import javax.jdo.annotations.Embedded;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
@@ -67,6 +68,7 @@ public class Movie {
 	private String synopsis;
 
 	@Persistent
+	@Embedded
 	@SerializedName("posters")
 	public Posters posters;
 
