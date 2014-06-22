@@ -13,10 +13,6 @@ import javax.jdo.annotations.PrimaryKey;
 
 /**
  * GSON class representing a movie
- * 
- * @author <a href="mailto:tambug@gmail.com">Giordano Tamburrelli</a>
- * 
- * @version 1.0
  **/
 
 @PersistenceCapable
@@ -79,6 +75,9 @@ public class Movie {
 	@Persistent
 	@SerializedName("abridged_cast")
 	private List<AbridgedCast> abridgedCast;
+	
+	@Persistent
+	private List<Comment> comments;
 
 	public Key getMovieKey() {
 		return movieKey;
@@ -191,7 +190,12 @@ public class Movie {
 	public void setAbridgedCast(List<AbridgedCast> abridgedCast) {
 		this.abridgedCast = abridgedCast;
 	}
-
 	
+	public List<Comment> getComments() {
+		return comments;
+	}
 
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
 }
