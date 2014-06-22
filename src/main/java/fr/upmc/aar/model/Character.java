@@ -9,9 +9,7 @@ import com.google.appengine.api.datastore.Key;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * GSON class representing the cast character
- * 
- * @author <a href="mailto:tambug@gmail.com">Giordano Tamburrelli</a>
+ * Class representing the cast character
  * 
  * @version 1.0
  **/

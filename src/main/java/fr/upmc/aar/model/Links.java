@@ -11,11 +11,8 @@ import com.google.appengine.api.datastore.Key;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * GSON class containing the movie links
- * 
- * @author <a href="mailto:tambug@gmail.com">Giordano Tamburrelli</a>
- * 
- * @version 1.0
+ * Class containing the movie links
+ *
  **/
 @PersistenceCapable
 public class Links {

@@ -12,7 +12,6 @@ import com.google.appengine.api.datastore.Key;
 @PersistenceCapable
 public class Comment {
 	
-	
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private Key commentKey;

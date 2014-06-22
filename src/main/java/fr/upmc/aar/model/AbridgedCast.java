@@ -11,11 +11,8 @@ import com.google.appengine.api.datastore.Key;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * GSON class representing the movie cast
- * 
- * @author <a href="mailto:tambug@gmail.com">Giordano Tamburrelli</a>
- * 
- * @version 1.0
+ * Class representing the movie cast
+ *
  **/
 @PersistenceCapable
 public class AbridgedCast {
