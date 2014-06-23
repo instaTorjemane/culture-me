@@ -8,13 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.appengine.api.search.dev.GenericScorer.Result;
 
 import fr.upmc.aar.dao.CommentDAO;
-import fr.upmc.aar.dao.ResultState;
 import fr.upmc.aar.dao.UserDAO;
 import fr.upmc.aar.model.Comment;
-import fr.upmc.aar.model.Movie;
 import fr.upmc.aar.model.User;
 
 /**
