@@ -46,7 +46,6 @@ public class UserDAO {
 	}
 	
 	
-	
 	public static User getUser(String username, String password){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		User u = new User();

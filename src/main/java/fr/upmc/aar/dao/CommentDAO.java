@@ -24,16 +24,11 @@ public class CommentDAO {
 			}catch(Exception e){
 				System.out.println("Exception dans userComments");
 			}finally{
-				q.closeAll();
 				pm.close();
 			}
-			
 		}else{
 			System.out.println("Utilisateur non trouvé");
 		}
-		return comments;
-				
+		return comments;		
 	}
-		
-		
 }
