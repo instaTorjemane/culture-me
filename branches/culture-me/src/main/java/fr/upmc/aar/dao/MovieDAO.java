@@ -27,7 +27,7 @@ public class MovieDAO {
 		pm.close();
 		return movies;
 	}
-
+	
 	/*
 	 * Add movie
 	 */
