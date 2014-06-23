@@ -89,6 +89,7 @@
 						{
 							String critics = movies.get(i).getCriticsConsensus();
 							String title = movies.get(i).getTitle();
+							String year = movies.get(i).getYear();
 							
 							if (critics == null) critics = "";
 							if (title == null) title = "";
@@ -96,8 +97,8 @@
 							if(movies.get(i).getPosters() != null)
 								image = movies.get(i).getPosters().getOriginal();
 							
-							out.write(HTMLHelper.createArticle("movieDetail.jsp", 
-								"image featured", 
+							out.write(HTMLHelper.createArticle("movieDetail.jsp?title="+title+"&year="+year, 
+								"image featured small", 
 								image, 
 								title,
 								critics));
