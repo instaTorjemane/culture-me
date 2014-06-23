@@ -8,20 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.upmc.aar.dao.ResultState;
-import fr.upmc.aar.dao.UserDAO;
-import fr.upmc.aar.model.User;
+import fr.upmc.aar.dao.MovieDAO;
+import fr.upmc.aar.model.Comment;
 
 /**
- * Servlet implementation class UserListServlet
+ * Servlet implementation class MovieCommentServlet
  */
-public class UserListServlet extends HttpServlet {
+public class MovieCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserListServlet() {
+    public MovieCommentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,13 +29,12 @@ public class UserListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ResultState<List<User>> users = UserDAO.listUser();
-		if(users.getState()){
-			for(User user : users.getContent()){
-				response.getWriter().print(user.html());
+		List<Comment> comments = MovieDAO.getMovieComments("The Signal","2014");
+		if(comments != null){
+			for (Comment comment : comments) {
+				response.getWriter().print(comment.getUsername() + "<br/>" + comment.getContent() + "<br/>");
 			}
 		}
-		
 	}
 
 	/**

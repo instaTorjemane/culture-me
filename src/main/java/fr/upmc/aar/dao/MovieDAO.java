@@ -6,7 +6,6 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-import org.datanucleus.FetchGroup;
 
 import com.google.appengine.api.datastore.Key;
 
@@ -154,16 +153,12 @@ public class MovieDAO {
 		/*get movies comments
 		 */
 		public static List<Comment> getMovieComments(String title, String year){
-			PersistenceManager pm = PMF.get().getPersistenceManager();
-			Query q = pm.newQuery(Movie.class);
-
-			//Récupérer le film
+			List<Comment> comments = null;
 			Movie m = getMovie(title, year);
-
-			// Récupérer tout les commmentaires
-			List<Comment> allComments = m.getComments();
-
-			return allComments;
+			if(m != null ){
+				comments = m.getComments();
+			}
+			return comments;
 		}
 
 
