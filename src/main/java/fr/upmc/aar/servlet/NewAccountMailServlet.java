@@ -21,13 +21,13 @@ import fr.upmc.aar.model.User;
 /**
  * Servlet implementation class MailServlet
  */
-public class MailServlet extends HttpServlet {
+public class NewAccountMailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MailServlet() {
+    public NewAccountMailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -56,15 +56,21 @@ public class MailServlet extends HttpServlet {
 		
 		try {
 		    Message msg = new MimeMessage(session);
+		    msg.setContent(msgBody, "text/html");
 		    msg.setFrom(new InternetAddress("stl.insta.aar@gmail.com", "Webmaster Culture-me"));
-		    msg.addRecipient(Message.RecipientType.TO,new InternetAddress("","M. "+u.getLastName()));
+		    msg.addRecipient(Message.RecipientType.TO,new InternetAddress(u.getMail(),"M. "+u.getLastName()));
 		    msg.setSubject("[Culture-me] Bienvenue "+u.getUsername()+" !");
-		    msg.setText(msgBody);
+		    //msg.setText(msgBody);
 		    Transport.send(msg);
+		    
+		    /*Test affichage corps OK
+		     * response.getWriter().print("<h1>Envoi d'Email</h1><p>From: stl.insta.aar@gmail.com</p>"
+		    		+ "<p>To: "+u.getMail()+"</p><p>Corps du mail: <br />"+msgBody+"</p><br/><p>Message bien envoyé!</p>");
+		    */
 		    }catch (AddressException e) {
-		    	e.printStackTrace();
+		    	response.getWriter().print(" AddressException" +e.getMessage());
 		    }catch (MessagingException e) {
-		    	e.printStackTrace();
+		    	response.getWriter().print(" MessagingException" +e.getMessage());
 		    }
 		
 	}
@@ -73,7 +79,7 @@ public class MailServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }
