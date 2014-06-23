@@ -3,6 +3,7 @@ package fr.upmc.aar.servlet;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -38,9 +39,9 @@ public class AddCommentServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//List<Movie> movies = MovieDAO.listMovie();
-		//Movie movie = movies.get(3);
-		Movie movie = MovieDAO.getMovie("The Signal","2014");
+		List<Movie> movies = MovieDAO.listMovie();
+		Movie movie = movies.get(10);
+		//Movie movie = MovieDAO.getMovie("The Signal","2014");
 		response.getWriter().print("<html> "+ "<body><h1>Ajout d'un commentaire</h1>");
 		response.getWriter().print("<p>titre : " + movie.getTitle() + "</p>" + 
 				"<p>Description : </p><p>" + movie.getSynopsis() +  "</p>" + 
@@ -49,8 +50,8 @@ public class AddCommentServlet extends HttpServlet {
 		
 		Comment comment = new Comment();
 		comment.setCommentDate(new Date());
-		comment.setContent("Tres bien!");
-		comment.setMark(3f);
+		comment.setContent("Bof bof le film.....");
+		comment.setMark(2f);
 		comment.setUsername("shazad");
 		
 		response.getWriter().print("<p>Commentaire :"+comment.getContent()+"</p> "

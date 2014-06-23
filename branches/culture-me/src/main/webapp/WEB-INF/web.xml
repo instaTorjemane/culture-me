@@ -15,6 +15,16 @@
 	</servlet-mapping>
 	<servlet>
 		<description></description>
+		<display-name>UserCommentsServlet</display-name>
+		<servlet-name>UserCommentsServlet</servlet-name>
+		<servlet-class>fr.upmc.aar.servlet.UserCommentsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserCommentsServlet</servlet-name>
+		<url-pattern>/UserCommentsServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
 		<display-name>PopulateServlet</display-name>
 		<servlet-name>PopulateServlet</servlet-name>
 		<servlet-class>fr.upmc.aar.servlet.PopulateServlet</servlet-class>
@@ -75,5 +85,4 @@
 		<servlet-name>SendPasswordServlet</servlet-name>
 		<url-pattern>/SendPasswordServlet</url-pattern>
 	</servlet-mapping>
-
 </web-app>
