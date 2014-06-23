@@ -90,4 +90,15 @@
     <servlet-name>MovieCommentServlet</servlet-name>
     <url-pattern>/MovieCommentServlet</url-pattern>
   </servlet-mapping>
+	
+	<servlet>
+		<description></description>
+		<display-name>NewAccountMailServlet</display-name>
+		<servlet-name>NewAccountMailServlet</servlet-name>
+		<servlet-class>fr.upmc.aar.servlet.NewAccountMailServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NewAccountMailServlet</servlet-name>
+		<url-pattern>/NewAccountMailServlet</url-pattern>
+	</servlet-mapping>
 </web-app>
