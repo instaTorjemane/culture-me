@@ -45,16 +45,6 @@ public class Links {
 	@SerializedName("similar")
 	private String similar;
 	
-	@Persistent
-	private List<Comment> comments;
-
-	public List<Comment> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
-	}
 
 	public Key getLinkKey() {
 		return linkKey;

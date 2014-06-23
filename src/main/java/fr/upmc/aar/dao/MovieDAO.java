@@ -31,19 +31,21 @@ public class MovieDAO {
 	/*
 	 * Add movie
 	 */
-	public static void addMovie(Movie movie)
+	public static boolean addMovie(Movie movie)
 	{
+		boolean state;
 		PersistenceManager pm = PMF.get().getPersistenceManager();
-		pm.getFetchPlan().setGroup(FetchGroup.ALL);
-
 		try {
 			pm.makePersistent(movie);
+			state = true;
 		} 
 		catch(Exception e){
+			state = false;
 		}
 		finally {
 			pm.close();
 		}
+		return state;
 
 	}
 
