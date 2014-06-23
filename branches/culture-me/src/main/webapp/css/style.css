@@ -272,8 +272,8 @@
 		
 			.image img
 			{
-				display: block;
-				width: 100%;
+				width: 70%;
+				vertical-align: middle;
 			}
 
 			.image.full
@@ -1546,6 +1546,7 @@
 			width: 18em;
 			background: #fff;
 			text-align: center;
+			vertical-align: top;
 			padding: 0 1em 3em 1em;
 			margin: 0 2em 0 0;
 			white-space: normal;

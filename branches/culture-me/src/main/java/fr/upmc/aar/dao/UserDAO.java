@@ -5,7 +5,6 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-import fr.upmc.aar.model.Comment;
 import fr.upmc.aar.model.User;
 
 public class UserDAO {

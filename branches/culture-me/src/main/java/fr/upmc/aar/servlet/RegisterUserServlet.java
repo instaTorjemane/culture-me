@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.upmc.aar.dao.UserDAO;
 import fr.upmc.aar.model.User;
-import fr.upmc.aar.utils.JavaHelper;
 
 /**
  * Servlet implementation class RegisterUserServlet

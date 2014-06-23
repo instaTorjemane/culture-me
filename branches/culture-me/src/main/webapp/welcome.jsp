@@ -87,18 +87,21 @@
 							
 						for (int i=0; i<movies.size(); i++)
 						{
+							String critics = movies.get(i).getCriticsConsensus();
+							String title = movies.get(i).getTitle();
+							
+							if (critics == null) critics = "";
+							if (title == null) title = "";
+							
 							if(movies.get(i).getPosters() != null)
 								image = movies.get(i).getPosters().getOriginal();
-							else
-								image = "http://www.picturesnew.com/media/images/image.jpg";
 							
 							out.write(HTMLHelper.createArticle("movieDetail.jsp", 
 								"image featured", 
 								image, 
-								movies.get(i).getTitle(),
-								movies.get(i).getSynopsis()));
+								title,
+								critics));
 						}
-
 						
 					%>
 				</div>
