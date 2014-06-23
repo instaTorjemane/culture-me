@@ -40,8 +40,8 @@ public class AddCommentServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Movie> movies = MovieDAO.listMovie();
-		Movie movie = movies.get(10);
-		//Movie movie = MovieDAO.getMovie("The Signal","2014");
+		//Movie movie = movies.get(10);
+		Movie movie = MovieDAO.getMovie("The Signal","2014");
 		response.getWriter().print("<html> "+ "<body><h1>Ajout d'un commentaire</h1>");
 		response.getWriter().print("<p>titre : " + movie.getTitle() + "</p>" + 
 				"<p>Description : </p><p>" + movie.getSynopsis() +  "</p>" + 
