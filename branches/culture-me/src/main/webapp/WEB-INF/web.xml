@@ -33,7 +33,16 @@
 		<servlet-name>MovieListServlet</servlet-name>
 		<url-pattern>/MovieListServlet</url-pattern>
 	</servlet-mapping>
-	
+	<servlet>
+		<description></description>
+		<display-name>AddCommentServlet</display-name>
+		<servlet-name>AddCommentServlet</servlet-name>
+		<servlet-class>fr.upmc.aar.servlet.AddCommentServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddCommentServlet</servlet-name>
+		<url-pattern>/AddCommentServlet</url-pattern>
+	</servlet-mapping>
 	<servlet>
 		<description></description>
 		<display-name>LoginServlet</display-name>
