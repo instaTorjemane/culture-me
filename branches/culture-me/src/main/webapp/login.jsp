@@ -94,11 +94,11 @@
 						<div class="clear"></div>
 					</div>
 				</form>
-				<form class="forgot_password" action="SendPasswordServlet">
+				<form class="forgot_password" action="SendPasswordServlet" method="post">
 					<h3>Mot de passe perdu</h3>
 					<div>
-						<label>Nom d'utilisateur ou adresse mail</label>
-						<input type="text" />
+						<label>Adresse mail</label>
+						<input name="emailcheck" type="text" />
 						<span class="error">Saisie invalide</span>
 					</div>
 					<div class="bottom">

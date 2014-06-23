@@ -92,6 +92,19 @@ public class UserDAO {
 
 		return exists;
 	}
+	
+	public static User getUserByMail(final String mail)
+	{
+		User u = null;
+
+		@SuppressWarnings("unchecked")
+		List<User> users = (List<User>) PMF.get().getPersistenceManager().newQuery(User.class, "(mail == '" + mail + "')").execute();
+		if(users!=null && users.size() == 1){
+			u = users.get(0);
+		}
+		return u;
+
+	}
 
 	public static ResultState<User> checkUser(final String username, final String password){
 		ResultState<User> result = new ResultState<>();
