@@ -39,13 +39,14 @@ public class MailServlet extends HttpServlet {
 		
 		//Requête DAO pour récupéré le User
 		//UserDAO.getUser ==> Par mail? Par Id?
+		User u = UserDAO.getUser("shazad","shazad");
 		
-		User u = new User();
+		
 		Properties props = new Properties();
 		Session session = Session.getDefaultInstance(props, null);
 		
 		String msgBody = "<html><body>"
-				+ "<h2> Bienvenue chez culture-me $pseudo </h2>"
+				+ "<h2> Bienvenue chez culture-me "+u.getUsername()+"!</h2>"
 				+ "<p> Vous êtes maintenant inscrit sur le premier site d'évaluations de produits culturels !</p>"
 				+ "<p> Participez vous aussi, et donnez votre avis sur les films, jeux videos et livres que vous avez aimez (ou pas!) !</p>"
 				+ "<br/>"
@@ -61,9 +62,9 @@ public class MailServlet extends HttpServlet {
 		    msg.setText(msgBody);
 		    Transport.send(msg);
 		    }catch (AddressException e) {
-		    // ...
+		    	e.printStackTrace();
 		    }catch (MessagingException e) {
-		    // ...
+		    	e.printStackTrace();
 		    }
 		
 	}

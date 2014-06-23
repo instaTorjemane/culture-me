@@ -10,20 +10,32 @@ import fr.upmc.aar.model.Comment;
 public class CommentDAO {
 	
 	@SuppressWarnings("unchecked")
-	public static List<Comment> userComments(String username){
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-		List<Comment> comments = null;
-		Query q = pm.newQuery(Comment.class);
-		q.setFilter("username = userParameter");
-		q.declareParameters("String userParameter");
-		try{
-			comments = (List<Comment>) q.execute(username);
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			q.closeAll();
-			pm.close();
+	public ResultState<List<Comment>> userComments(String username){
+		
+		ResultState<List<Comment>> comments = new ResultState<List<Comment>>();
+		
+		if(UserDAO.userExists(username)){	
+			PersistenceManager pm = PMF.get().getPersistenceManager();
+			comments.setState(true);
+			Query q = pm.newQuery(Comment.class);
+			q.setFilter("username = userParameter");
+			q.declareParameters("String userParameter");
+			try{
+				List<Comment> coms = (List<Comment>) q.execute(username);
+				comments.setContent(coms);
+			}catch(Exception e){
+				comments.setState(false);
+			}finally{
+				q.closeAll();
+				pm.close();
+			}
+			
+		}else{
+			comments.setState(false);
 		}
 		return comments;
+				
 	}
+		
+		
 }

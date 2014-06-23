@@ -11,10 +11,6 @@ import com.google.gson.GsonBuilder;
 
 /**
  * This is simple example of JTomato
- * 
- * @author <a href="mailto:tambug@gmail.com">Giordano Tamburrelli</a>
- * 
- * @version 1.0
  **/
 public class Example {
 
@@ -27,16 +23,19 @@ public class Example {
 
 		// Creating a list to store the results
 		List<Movie> movies = new ArrayList<Movie>();
-
+		
 		movies = jtomato.getBoxOfficeMovies("us", 50);
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		System.out.println("LISTE DES MOVIES DU JSON");
 		for(Movie m : movies){
 			System.out.println(m.getTitle());
 			System.out.println();
 			System.out.println(m.getSynopsis());
 			System.out.println();
+			System.out.println(m.getYear());
 			//System.out.println(gson.toJson(m));
 		}
+		
 		// Searching a movie, page 1
 		//int total = jtomato.searchMovie("spider man", movies, 1);
 		//System.out.println("Found " + total + " results");
