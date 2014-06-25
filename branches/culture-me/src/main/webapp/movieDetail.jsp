@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<%@page import="fr.upmc.aar.model.User"%>
+<%@page import="fr.upmc.aar.model.AbridgedCast"%>
 <%@page import="fr.upmc.aar.utils.HTMLHelper"%>
 <%@page import="fr.upmc.aar.model.Movie"%>
 <%@page import="java.util.List"%>
@@ -21,6 +23,7 @@
 	<body>
 
 		<!-- Header -->
+		<div id="header">
 				<!-- Nav -->
 					<nav id="nav">
 						<ul>
@@ -28,61 +31,84 @@
 							<li><a href="left-sidebar.html">Left Sidebar</a></li>
 							<li><a href="right-sidebar.html">Right Sidebar</a></li>
 							<li><a href="no-sidebar.html">No Sidebar</a></li>
-							<li><a href="login.jsp">Se connecter</a></li>
+							<% 
+								if (session.getAttribute("user") != null)
+								{
+									User connectedUser = (User) session.getAttribute("user");
+									out.print("<li><a href='logout.jsp'>Se deconnecter (" + connectedUser.getFirstName() + " " + connectedUser.getLastName() + ")</a></li>");
+								}
+								else
+									out.print("<li><a href='login.jsp'>Se connecter</a></li>");
+							%>
 						</ul>
 					</nav>					
-
+		</div>
 						
 		<!-- Main -->
 			<div class="wrapper style2">
-
 				<article id="main" class="container special">
 					<% 
 						String movieTitle = request.getParameter("title");
 						String movieYear = request.getParameter("year");
-					
+						String website = "";
+						String critics = "";
+						String title = "";
+						String releaseDate = "";
+						String runtime = "";
+						String synopsis = "";
+						List<String> genres = null;
+						List<AbridgedCast> cast = null;
+						String image = "";
+						
 						if (!movieTitle.isEmpty() && !movieYear.isEmpty())
 						{						
 							Movie requestedMovie = MovieDAO.getMovie(movieTitle, movieYear);					
 							
-							String image = "";
+							if (requestedMovie != null)
+							{
+								if(requestedMovie.getPosters() != null)
+									image = requestedMovie.getPosters().getOriginal();
 							
-							if(requestedMovie.getPosters() != null)
-								image = requestedMovie.getPosters().getOriginal();
-							
-							String critics = requestedMovie.getCriticsConsensus();
-							String title = requestedMovie.getTitle();
-								
-							if (critics == null) critics = "";
-							if (title == null) title = "";						
-								
-							out.write(HTMLHelper.createArticle("movieDetail.jsp", 
-								"image featured small", 
-								image, 
-								title,
-								critics));
+								critics = requestedMovie.getCriticsConsensus();
+								title = requestedMovie.getTitle();
+								releaseDate = requestedMovie.getReleaseDate().getTheater();
+								runtime = requestedMovie.getRuntime();
+								synopsis = requestedMovie.getSynopsis();
+								genres = requestedMovie.getGenres();
+								cast = requestedMovie.getAbridgedCast();								
+								website = requestedMovie.getLinks().getAlternate();													
+																	
+							}
 						}						
 						else
 						{}
 							
 					%>
-					<a href="http://mdomaradzki.deviantart.com/art/Planet-Bronte-339258500" class="image featured"><img src="images/pic06.jpg" alt="" /></a>
+					<a href="<%=website%>" target="_blank" class="image featured"><img src="<%=image%>" alt="" /></a>
 					<header>
-						<h2><a href="#"><%=movieTitle%></a></h2>
+						<h2><a href="<%=website%>" target="_blank"><%=movieTitle%></a></h2>
 						<span class="byline">
-							Sociis aenean eu aenean mollis mollis facilisis primis ornare penatibus aenean. Cursus ac enim 
-							pulvinar curabitur morbi convallis. Lectus malesuada sed fermentum dolore amet.
+							<%=synopsis%>
 						</span>
 					</header>
 					<p>
-						Commodo id natoque malesuada sollicitudin elit suscipit. Curae suspendisse mauris posuere accumsan massa 
-						posuere lacus convallis tellus interdum. Amet nullam fringilla nibh nulla convallis ut venenatis purus 
-						sit arcu sociis. Nunc fermentum adipiscing tempor cursus nascetur adipiscing adipiscing. Primis aliquam 
-						mus lacinia lobortis phasellus suscipit. Fermentum lobortis non tristique ante proin sociis accumsan 
-						lobortis. Auctor etiam porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum 
-						consequat integer interdum integer purus sapien. Nibh eleifend nulla nascetur pharetra commodo mi augue 
-						interdum tellus. Ornare cursus augue feugiat sodales velit lorem. Semper elementum ullamcorper lacinia 
-						natoque aenean scelerisque.
+						<div class="runtime">
+							<h3>Durée</h3>
+							<%=runtime%>
+						</div>					
+						<% 
+							if (!critics.isEmpty())
+								out.print("<div class='critics'><h3>Critiques</h3>" + critics + "</div>");								
+						%>
+						<div class="casting">
+							<header><h3>Casting</h3></header>
+							<%
+								out.print("<ul>");
+								for (AbridgedCast actor : cast)
+									out.print("<li class='actor'>" + actor.getName() + "</li>");
+								out.print("</ul>");
+							%>
+						</div>						
 					</p>
 					<footer>
 						<a href="#" class="button">Continue Reading</a>
