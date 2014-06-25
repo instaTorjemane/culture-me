@@ -101,4 +101,16 @@
 		<servlet-name>NewAccountMailServlet</servlet-name>
 		<url-pattern>/NewAccountMailServlet</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<description></description>
+		<display-name>MovieDetailsServlet</display-name>
+		<servlet-name>MovieDetailsServlet</servlet-name>
+		<servlet-class>fr.upmc.aar.servlet.MovieDetailsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MovieDetailsServlet</servlet-name>
+		<url-pattern>/MovieDetailsServlet</url-pattern>
+	</servlet-mapping>
+
 </web-app>
