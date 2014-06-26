@@ -2,7 +2,7 @@
 <cronentries>
   <cron>
     <url>/PopulateServlet</url>
-    <description>repopulate 1 every 1 minutes</description>
+    <description>repopulate movies every 2 hours</description>
     <schedule>every 2 hours</schedule>
   </cron>
 </cronentries>

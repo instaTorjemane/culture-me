@@ -9,7 +9,6 @@ package fr.upmc.aar.jtomato;
 public class urls {
 	
 	public static final String ROTTENTOMATOES_API = "api.rottentomatoes.com/api/public/v1.0/";
-			//"api.rottentomatoes.com/api/public/v1.0/";
 	public static final String SEARCH_MOVIES = "movies.json";
 	public static final String OPENING_MOVIES = "lists/movies/opening.json";
 	public static final String BOX_OFFICE_MOVIES = "lists/movies/box_office.json";
