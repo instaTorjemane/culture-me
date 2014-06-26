@@ -114,7 +114,6 @@ public class MovieDAO {
 				System.out.println("Exception dans getMovie()");
 				e.printStackTrace();
 			}finally{
-				q.closeAll();
 				pm.close();
 			}
 			return m;

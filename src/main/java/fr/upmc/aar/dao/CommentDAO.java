@@ -31,4 +31,27 @@ public class CommentDAO {
 		}
 		return comments;		
 	}
+	
+	@SuppressWarnings("unchecked")
+	public static List<Comment> userMovieComment(String username, String movieTitle, String movieYear){
+		
+		List<Comment> comments = null;
+		
+		//if(UserDAO.userExists(username)){	
+			PersistenceManager pm = PMF.get().getPersistenceManager();
+			Query q = pm.newQuery(Comment.class);
+			q.setFilter("username == userParameter && movieTitle == titleParameter && movieYear == yearParameter");
+			q.declareParameters("String userParameter, String titleParameter, String yearParameter");
+			try{
+				comments = (List<Comment>) q.execute(username, movieTitle, movieYear);
+			}catch(Exception e){
+				System.out.println("Exception dans userComments");
+			}finally{
+				pm.close();
+			}
+//		}else{
+//			System.out.println("Utilisateur non trouvé");
+//		}
+		return comments;		
+	}
 }

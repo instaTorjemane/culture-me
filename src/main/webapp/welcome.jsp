@@ -201,11 +201,11 @@
 								List<Comment> comments = CommentDAO.userComments(connectedUser.getUsername());
 								
 								if(comments != null)
-									if(!comments.isEmpty())
+									if(comments.size()>0)
 				%>
 				<div class="carousel">
 					<div class="reel">
-						<header><h1>Tous mes commentaires</h1></header>
+						<header><h1>Tous mes commentaires </h1></header>
 				<%
 					for(Comment com : comments)
 							out.write(ApplicationHelper.displayCommentArticle(com.getMovieTitle(), com.getContent(), com.getMark()));
