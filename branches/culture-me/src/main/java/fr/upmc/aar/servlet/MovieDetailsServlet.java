@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.upmc.aar.dao.CommentDAO;
 import fr.upmc.aar.dao.MovieDAO;
 import fr.upmc.aar.model.AbridgedCast;
 import fr.upmc.aar.model.Comment;
@@ -102,9 +103,10 @@ public class MovieDetailsServlet extends HttpServlet {
 				if (currentUser != null)
 				{
 					out.print("<footer><a href='welcome.jsp?commentTitle=" + movieTitle + "&commentYear=" + movieYear + "' class='button'>Tous les commentaires sur ce film</a></footer>");
-					List<Comment> comments = MovieDAO.getMovieComments(movieTitle,movieYear);
-					if(comments == null)
+					List<Comment> userMovieComments = CommentDAO.userMovieComment(currentUser.getUsername(), movieTitle, movieYear);
+					if(userMovieComments == null || (userMovieComments != null && userMovieComments.size()<1))						
 						out.print("<footer><a href='welcome.jsp?focusTitle=" + movieTitle + "&focusYear=" + movieYear + "#comment' class='button' id='addComment'>Laisser un commentaire</a></footer>");
+					
 				}
 					 	
 			}

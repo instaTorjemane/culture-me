@@ -87,6 +87,8 @@ public class SendPasswordServlet extends HttpServlet {
 				    	response.getWriter().print(" AddressException" +e.getMessage());
 				    }catch (MessagingException e) {
 				    	response.getWriter().print(" MessagingException" +e.getMessage());
+				    }finally {
+				    	request.getRequestDispatcher("welcome.jsp").forward(request,response);				    	
 				    }
 			}
 		}else{
