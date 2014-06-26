@@ -3,27 +3,7 @@
 	xmlns="http://java.sun.com/xml/ns/javaee"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
-	<servlet>
-		<description></description>
-		<display-name>UserListServlet</display-name>
-		<servlet-name>UserListServlet</servlet-name>
-		<servlet-class>fr.upmc.aar.servlet.UserListServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>UserListServlet</servlet-name>
-		<url-pattern>/UserListServlet</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<description></description>
-		<display-name>UserCommentsServlet</display-name>
-		<servlet-name>UserCommentsServlet</servlet-name>
-		<servlet-class>fr.upmc.aar.servlet.UserCommentsServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>UserCommentsServlet</servlet-name>
-		<url-pattern>/UserCommentsServlet</url-pattern>
-	</servlet-mapping>
-
+	
 	<servlet>
 		<description></description>
 		<display-name>PopulateServlet</display-name>
@@ -33,18 +13,6 @@
 	<servlet-mapping>
 		<servlet-name>PopulateServlet</servlet-name>
 		<url-pattern>/PopulateServlet</url-pattern>
-	</servlet-mapping>
-
-
-	<servlet>
-		<description></description>
-		<display-name>MovieListServlet</display-name>
-		<servlet-name>MovieListServlet</servlet-name>
-		<servlet-class>fr.upmc.aar.servlet.MovieListServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>MovieListServlet</servlet-name>
-		<url-pattern>/MovieListServlet</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
@@ -133,4 +101,7 @@
 			<role-name>admin</role-name>
 		</auth-constraint>
 	</security-constraint>
+	<welcome-file-list>
+		<welcome-file>welcome.jsp</welcome-file>
+	</welcome-file-list>
 </web-app>

@@ -52,7 +52,7 @@ public class MovieDAO {
 	/*
 	 * Add comment to movie
 	 */
-	public static void addCommentToMovie(String title, String year, Comment comment){
+	public static void addCommentToMovie(Comment comment){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Movie m = null;
 		
@@ -66,9 +66,8 @@ public class MovieDAO {
 		
 		//Persister
 		try{
-
 			
-			List<Movie> movies = (List<Movie>) q.execute(title,year);
+			List<Movie> movies = (List<Movie>) q.execute(comment.getMovieTitle(),comment.getMovieYear());
 			if (movies != null && movies.size()==1){
 				//Récupération du film
 				m = movies.get(0);
@@ -86,12 +85,12 @@ public class MovieDAO {
 			}
 			
 			}catch(Exception e){
-				System.out.println("Exception dans AddComment");	
+				//System.out.println("Exception dans AddComment");	
 			}finally{
 				//q.closeAll();
 				pm.close();
 			}
-			System.out.println("Ajout du commentaire bien effectué");
+			//System.out.println("Ajout du commentaire bien effectué");
 		}
 
 		/*
