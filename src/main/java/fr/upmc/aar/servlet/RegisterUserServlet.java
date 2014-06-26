@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.upmc.aar.dao.UserDAO;
 import fr.upmc.aar.model.User;
-import fr.upmc.aar.utils.MailUtil;
+import fr.upmc.aar.utils.ApplicationHelper;
 
 /**
  * Servlet implementation class RegisterUserServlet
@@ -50,7 +50,7 @@ public class RegisterUserServlet extends HttpServlet {
 		if (username.isEmpty() || password.isEmpty() || firstname.isEmpty() || lastname.isEmpty())
 		{
 			PrintWriter out = response.getWriter();
-			out.print("<div align='center'>Le compte utilisateur n'a pas été créé, remplissez les champs obligatoires !</div>");
+			out.print("<div align='center' style='color: red;'>Le compte utilisateur n'a pas été créé, remplissez les champs obligatoires !</div>");
 			request.getRequestDispatcher("login.jsp").forward(request,response);
 		}
 		else
@@ -67,7 +67,7 @@ public class RegisterUserServlet extends HttpServlet {
 			user.setWebsite(website);
 			
 			UserDAO.addUser(user);
-			MailUtil.newAccountConfirm(user);
+			ApplicationHelper.newAccountConfirm(user);
 			
 			request.getRequestDispatcher("login.jsp").forward(request,response);
 		}

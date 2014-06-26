@@ -32,7 +32,8 @@ public class MovieCommentServlet extends HttpServlet {
 		List<Comment> comments = MovieDAO.getMovieComments("The Signal","2014");
 		if(comments != null){
 			for (Comment comment : comments) {
-				response.getWriter().print(comment.getUsername() + "<br/>" + comment.getContent() + "<br/>");
+				response.getWriter().print("<p><strong>" + comment.getUsername() + "</strong> : " + comment.getContent() + "<br/><strong>" + comment.getUsername() + "</strong> : " + comment.getContent() + "</p>");
+				response.getWriter().print("<p><strong>" + comment.getUsername() + "</strong> : " + comment.getContent() + "<br/><strong>" + comment.getUsername() + "</strong> : " + comment.getContent() + "</p>");
 			}
 		}
 	}

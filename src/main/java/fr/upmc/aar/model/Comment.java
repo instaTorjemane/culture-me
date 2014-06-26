@@ -26,7 +26,13 @@ public class Comment {
 	private String content;
 	
 	@Persistent
-	private Double mark;
+	private double mark;
+	
+	@Persistent
+	private String movieTitle;
+	
+	@Persistent
+	private String movieYear;
 
 	public Key getCommentKey() {
 		return commentKey;
@@ -60,12 +66,27 @@ public class Comment {
 		this.content = content;
 	}
 
-	public Double getMark() {
+	public double getMark() {
 		return mark;
 	}
 
-	public void setMark(Double mark) {
+	public void setMark(double mark) {
 		this.mark = mark;
 	}
-	
+	public String getMovieTitle() {
+		return movieTitle;
+	}
+
+	public void setMovieTitle(String movieTitle) {
+		this.movieTitle = movieTitle;
+	}
+
+	public String getMovieYear() {
+		return movieYear;
+	}
+
+	public void setMovieYear(String movieYear) {
+		this.movieYear = movieYear;
+	}
+
 }

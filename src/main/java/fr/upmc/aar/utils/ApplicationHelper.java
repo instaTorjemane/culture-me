@@ -12,7 +12,38 @@ import javax.mail.internet.MimeMessage;
 
 import fr.upmc.aar.model.User;
 
-public class MailUtil{
+
+public class ApplicationHelper {
+		
+	public static String createArticle(String link, String anchorClass, String imageSrc, String title, String description){
+		
+		StringBuilder article = new StringBuilder();
+		
+		article.append("<article>");
+		article.append("<a href=\"" + link + "\" class=\"" + anchorClass + "\"><img src=\"" + imageSrc + "\" alt=\"\" /></a>");
+		article.append("<header>");
+		article.append("<h3><a href=\""+ link +"\">" + title + "</a></h3>");
+		article.append("</header>");
+		article.append("<p>" + description + "</p>");							
+		article.append("</article>");
+		
+		return article.toString();
+	}
+	
+	public static String displayCommentArticle( String movieTitle, String comment, double mark){
+		
+		StringBuilder article = new StringBuilder();
+		
+		article.append("<article>");
+		article.append("<header>");
+		article.append("<h3>" + movieTitle + "</h3>");
+		article.append("</header>");
+		article.append("<p> Note attribuée : " + (int)mark + "</p>");							
+		article.append("<p>" + comment + "</p>");							
+		article.append("</article>");
+		
+		return article.toString();
+	}		
 	
 	public static void newAccountConfirm(User u){
 		
@@ -53,5 +84,6 @@ public class MailUtil{
 			
 		}
 	}
+
 
 }
