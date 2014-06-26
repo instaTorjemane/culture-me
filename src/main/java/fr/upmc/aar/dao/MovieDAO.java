@@ -157,6 +157,25 @@ public class MovieDAO {
 			}
 			return comments;
 		}
+		
+		
+		/*
+		 * Movie mark average
+		 */
+		
+		public static float movieAverge(final String title, final String year){
+			float average = 0f;
+			
+			Movie movie = getMovie(title, year);
+			if(movie != null){
+				List<Comment> comments = movie.getComments();
+				for (Comment comment : comments) {
+					average = average + comment.getMark();
+				}
+				average = average / comments.size();
+			}
+			return average;
+		}
 
 
 		/*
