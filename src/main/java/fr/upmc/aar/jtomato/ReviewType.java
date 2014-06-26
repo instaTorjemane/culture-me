@@ -6,7 +6,6 @@ package fr.upmc.aar.jtomato;
  * Rotten Tomatoes designated top critics. "dvd" pulls the reviews given on the
  * DVD of the movie. "all" as the name implies retrieves all reviews.
  * 
- * @author <a href="mailto:tambug@gmail.com">Giordano Tamburrelli</a>
  * 
  * @version 1.0
  * 
