@@ -26,7 +26,7 @@ public class Comment {
 	private String content;
 	
 	@Persistent
-	private Float mark;
+	private Double mark;
 
 	public Key getCommentKey() {
 		return commentKey;
@@ -60,14 +60,12 @@ public class Comment {
 		this.content = content;
 	}
 
-	public Float getMark() {
+	public Double getMark() {
 		return mark;
 	}
 
-	public void setMark(Float mark) {
+	public void setMark(Double mark) {
 		this.mark = mark;
 	}
-
-
 	
 }

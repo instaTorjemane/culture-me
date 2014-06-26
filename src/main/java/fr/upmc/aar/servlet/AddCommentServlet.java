@@ -42,24 +42,31 @@ public class AddCommentServlet extends HttpServlet {
 		List<Movie> movies = MovieDAO.listMovie();
 		//Movie movie = movies.get(10);
 		Movie movie = MovieDAO.getMovie("The Signal","2014");
+		
+		Comment comment = new Comment();
+		comment.setCommentDate(new Date());
+		comment.setContent("Bof bof le film.....");
+		comment.setMark((double) new Random().nextInt(5));
+		comment.setUsername("shazad");
+		
+		MovieDAO.addCommentToMovie(movie.getTitle(),movie.getYear(), comment);
+		
 		response.getWriter().print("<html> "+ "<body><h1>Ajout d'un commentaire</h1>");
 		response.getWriter().print("<p>titre : " + movie.getTitle() + "</p>" + 
 				"<p>Description : </p><p>" + movie.getSynopsis() +  "</p>" + 
 				"<p>sortie : " + movie.getRuntime() + "</p>" +
 				"<p> Lien image: " +movie.getPosters().getOriginal()+"</p>");
 		
-		Comment comment = new Comment();
-		comment.setCommentDate(new Date());
-		comment.setContent("Bof bof le film.....");
-		comment.setMark(2f);
-		comment.setUsername("shazad");
 		
-		response.getWriter().print("<p>Commentaire :"+comment.getContent()+"</p> "
+		response.getWriter().print(
+				"<p>Username: "+comment.getUsername()+"</p>"
+				+ "<p>content: "+comment.getContent()+"</p>"
+				+ "<p>Ce commentaire va être rajouté</p>"
 				+ "<p>Note: "+comment.getMark()+"</p>"
-				+ "<p>Username: "+comment.getUsername()+"</p>"
-				+ "<p>Ce commentaire va être rajouté</p>");
 				
-		MovieDAO.addCommentToMovie(movie.getTitle(),movie.getYear(), comment);
+				+ "<p>" + MovieDAO.movieAverage(movie.getTitle(),movie.getYear()) + "</p>"
+				);
+				
 		System.out.println("Commentaire bien ajouté");
 	}
 

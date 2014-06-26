@@ -163,16 +163,19 @@ public class MovieDAO {
 		 * Movie mark average
 		 */
 		
-		public static float movieAverge(final String title, final String year){
-			float average = 0f;
+		public static double movieAverage(final String title, final String year){
+			double average = 0, sum = 0;
 			
 			Movie movie = getMovie(title, year);
 			if(movie != null){
 				List<Comment> comments = movie.getComments();
-				for (Comment comment : comments) {
-					average = average + comment.getMark();
+				if(comments != null && comments.size() > 0){
+					for (Comment comment : comments) {
+						sum = sum + comment.getMark();
+					}
+					if(sum >0) average = sum / comments.size();
 				}
-				average = average / comments.size();
+				
 			}
 			return average;
 		}
