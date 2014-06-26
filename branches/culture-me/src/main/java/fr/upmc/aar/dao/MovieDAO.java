@@ -6,7 +6,6 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-
 import com.google.appengine.api.datastore.Key;
 
 import fr.upmc.aar.model.Comment;
@@ -32,20 +31,21 @@ public class MovieDAO {
 	 */
 	public static boolean addMovie(Movie movie)
 	{
-		boolean state;
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-		try {
-			pm.makePersistent(movie);
-			state = true;
-		} 
-		catch(Exception e){
-			state = false;
-		}
-		finally {
-			pm.close();
+		boolean state = true;
+		if(!movieExists(movie.getTitle(), movie.getYear())){
+			PersistenceManager pm = PMF.get().getPersistenceManager();
+			try {
+				pm.makePersistent(movie);
+				state = true;
+			} 
+			catch(Exception e){
+				state = false;
+			}
+			finally {
+				pm.close();
+			}
 		}
 		return state;
-
 	}
 
 
@@ -139,10 +139,7 @@ public class MovieDAO {
 					m = movies.get(0);
 				}
 			}catch(Exception e){
-				System.out.println("Exception dans getMovie()");
-				e.printStackTrace();
 			}finally{
-				q.closeAll();
 				pm.close();
 			}
 			return m.getMovieKey();		
@@ -165,12 +162,25 @@ public class MovieDAO {
 		/*
 		 * Check if product exists
 		 */
-		public static boolean movieExists(final String title)
+		
+		public static boolean movieExists(final String title, final String year)
 		{
 			boolean exists = false;
+			
+			PersistenceManager pm = PMF.get().getPersistenceManager();
+			Query q = pm.newQuery(Movie.class);
+			
+			//Déclaration des paramètres et filtrage de la requête
+			q.setFilter("title == titleParameter && year == yearParameter");
+			q.declareParameters("String titleParameter, String yearParameter");
 
-			@SuppressWarnings("unchecked")
-			List<Movie> movies = (List<Movie>) PMF.get().getPersistenceManager().newQuery(Movie.class, "(title == '" + title + "')").execute();
+			List<Movie> movies = null;
+			try{
+				movies = (List<Movie>) q.execute(title,year);
+			}catch(Exception e){
+			}finally{
+				pm.close();
+			}
 			exists =  (movies!=null && movies.size() > 0);
 
 			return exists;

@@ -36,7 +36,19 @@ public class PopulateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		JTomato jtomato = new JTomato("nmmu57pre35rzzvhbvdjetts");
 		
+		//setting the number of results per page. Default is 30.
+		jtomato.setPage_limit(50);
+
+		// Creating a list to store the results
+		List<Movie> movies = new ArrayList<Movie>();
+
+		movies = jtomato.getBoxOfficeMovies("us", 50);
+		
+		for (Movie movie : movies) {
+			MovieDAO.addMovie(movie);
+		}
 	}
 
 	/**

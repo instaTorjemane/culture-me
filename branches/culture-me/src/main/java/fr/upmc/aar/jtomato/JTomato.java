@@ -16,15 +16,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-/**
- * This is the client for the <a href="http://developer.rottentomatoes.com"
- * target="_blank"> Rotten Tomatoes API</a> To use it is necessary to have a
- * valid API key.
- * 
- * @author <a href="mailto:tambug@gmail.com">Giordano Tamburrelli</a>
- * 
- * @version 1.0
- **/
+
 public class JTomato {
 
 	private String key;

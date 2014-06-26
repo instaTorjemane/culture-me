@@ -1,28 +1,23 @@
 package fr.upmc.aar.jtomato.net;
 
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URLEncodedUtils;
-import org.apache.http.impl.client.DecompressingHttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.params.HttpProtocolParams;
-import org.apache.http.util.EntityUtils;
 
-/**
- * HTTP Client used by default
- * 
- * @author <a href="mailto:tambug@gmail.com">Giordano Tamburrelli</a>
- * 
- * @version 1.0
- **/
+import com.google.appengine.api.urlfetch.FetchOptions;
+import com.google.appengine.api.urlfetch.HTTPMethod;
+import com.google.appengine.api.urlfetch.HTTPRequest;
+import com.google.appengine.api.urlfetch.HTTPResponse;
+import com.google.appengine.api.urlfetch.URLFetchService;
+import com.google.appengine.api.urlfetch.URLFetchServiceFactory;
+
+
 public class NetHttpClient implements NetHttpClientInterface {
 
 	private final String ENCODING = "utf-8";
@@ -30,23 +25,25 @@ public class NetHttpClient implements NetHttpClientInterface {
 	private final String agent = "Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2.2) Gecko/20100316 Firefox/3.6.2";
 
 	public String get(String uri) {
-		HttpClient httpclient = new DecompressingHttpClient(new DefaultHttpClient());
-		HttpProtocolParams.setUserAgent(httpclient.getParams(), agent);
-
-		HttpGet httpget = new HttpGet(uri);
-		HttpResponse response;
+		String response = "";
 		try {
-			response = httpclient.execute(httpget);
-			HttpEntity entity = response.getEntity();
+			URLFetchService urlFetchService = URLFetchServiceFactory.getURLFetchService();
+			URL url = new URL(uri);
 
-			if (entity != null) {
-				String responseContent = EntityUtils.toString(entity);
-				return responseContent;
-			}
+			FetchOptions fetchOptions = FetchOptions.Builder.withDefaults();
+			fetchOptions.doNotValidateCertificate();
+			fetchOptions.setDeadline(60D);
+
+			HTTPRequest request = new HTTPRequest(url, HTTPMethod.GET, fetchOptions);
+
+			HTTPResponse httpResponse = urlFetchService.fetch(request);
+			if (httpResponse.getResponseCode() == HttpURLConnection.HTTP_OK) {
+				response = new String(httpResponse.getContent());
+			} 
+
 		} catch (Exception e) {
-			e.printStackTrace();
 		}
-		return null;
+		return response;
 	}
 
 	public String buildUrl(String url, HashMap<String, String> params) {
