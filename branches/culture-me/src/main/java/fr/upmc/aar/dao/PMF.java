@@ -11,7 +11,7 @@ public class PMF
 
 	    private PMF() {}
 
-	    public static PersistenceManagerFactory get() {
+	    public synchronized static PersistenceManagerFactory get() {
 	        return pmfInstance;
 	    }
 
