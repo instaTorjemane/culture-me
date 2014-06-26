@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.upmc.aar.dao.UserDAO;
 import fr.upmc.aar.model.User;
+import fr.upmc.aar.utils.MailUtil;
 
 /**
  * Servlet implementation class RegisterUserServlet
@@ -66,6 +67,7 @@ public class RegisterUserServlet extends HttpServlet {
 			user.setWebsite(website);
 			
 			UserDAO.addUser(user);
+			MailUtil.newAccountConfirm(user);
 			
 			request.getRequestDispatcher("login.jsp").forward(request,response);
 		}
